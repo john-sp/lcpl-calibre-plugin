@@ -139,7 +139,8 @@ class LCPLInput(FileTypePlugin):
         for link in license["links"]: 
             if (
                 (link["rel"] == "publication" and link["type"] == "application/epub+zip") or
-                (link["rel"] == "publication" and link["type"] == "application/pdf")
+                (link["rel"] == "publication" and link["type"] == "application/pdf") or
+                (link["rel"] == "publication" and link["type"] == "application/pdf+lcp")
             ):
                 dl_link = link["href"]
                 if "length" in link:
@@ -151,6 +152,8 @@ class LCPLInput(FileTypePlugin):
                     dl_file_name_ext = ".epub"
                 elif link["type"] == "application/pdf":
                     dl_file_name_ext = ".pdf"
+                elif link["type"] == "application/pdf+lcp":
+                    dl_file_name_ext = ".lcpdf"
                 else:
                     dl_file_name_ext = ".zip"
 
